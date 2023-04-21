@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  colorscheme = "catppuccin-mocha",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -34,6 +34,8 @@ return {
         enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
+           "rust",
+          "rs"
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
@@ -53,6 +55,15 @@ return {
     },
   },
 
+  plugins = {
+    "simrat39/rust-tools.nvim",
+    {
+      opts = {
+        ensure_installed = {"rust_analyzer"},
+      },
+    },
+  },
+
   -- Configure require("lazy").setup() options
   lazy = {
     defaults = { lazy = true },
@@ -68,6 +79,7 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    vim.g.hardtime_default_on = 1
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
